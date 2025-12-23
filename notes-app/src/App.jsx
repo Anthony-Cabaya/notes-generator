@@ -1,11 +1,7 @@
-import NotesForm from "./NotesForm";
+import NotesGenerator from "./NotesGenerator";
 
 function App() {
-      return (
-          <>
-          <NotesForm />
-          </>
-          );
+      return <NotesGenerator />;
     }
 
 export default App;
