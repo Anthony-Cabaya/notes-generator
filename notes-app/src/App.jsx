@@ -1,3 +1,5 @@
+import './styles.css';
+import './media.css'
 import NotesGenerator from "./NotesGenerator";
 
 function App() {
