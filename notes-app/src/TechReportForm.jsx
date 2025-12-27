@@ -8,7 +8,7 @@ function TechReportForm() {
 
       <FormField label="Details of Concern:" isTextarea />
       <FormField label="Name of Caller:" />
-      <FormField label="Name of SOR" />
+      <FormField label="Name of SOR:" />
       <FormField label="Calling Number:" />
       <FormField label="Concerned Number:" />
       <FormField label="Action Done:" isTextarea />
@@ -26,7 +26,7 @@ function TechReportForm() {
       <FormField label="Account Status:" />
 
       <RadioGroup
-        label="Sufficient Allocation:"
+        label="Sufficient Allocation"
         name="allocation"
         options={["Yes", "No"]}
       />
@@ -35,7 +35,7 @@ function TechReportForm() {
       <FormField label="Part of Downtime:" />
 
       <RadioGroup
-        label="For Escalation:"
+        label="For Escalation"
         name="escalation"
         options={["Yes", "No"]}
       />
