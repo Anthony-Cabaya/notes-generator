@@ -1,17 +1,20 @@
 import FormField from "./FormField";
+import { useFormField } from "./useFormField";
 
-function NonTechReportForm() {
+function NonTechReportForm({ formData, setFormData }) {
+  const field = useFormField(formData, setFormData);
+
   return (
     <div>
       <h3>Non-Tech Report</h3>
 
-      <FormField label="Details of Concern:" isTextarea />
-      <FormField label="Concerned MIN:" />
-      <FormField label="ANI:" />
-      <FormField label="SOR:" />
-      <FormField label="Caller Name:" />
-      <FormField label="Action Done:" isTextarea />
-      <FormField label="Wocas:" />
+      <FormField label="Details of Concern:" isTextarea {...field("detailsOfConcern")} />
+      <FormField label="Concerned MIN:" {...field("concernedMIN")} />
+      <FormField label="ANI:" {...field("ani")} />
+      <FormField label="SOR:" {...field("sor")} />
+      <FormField label="Caller Name:" {...field("callerName")} />
+      <FormField label="Action Done:" isTextarea {...field("actionDone")} />
+      <FormField label="Wocas:" {...field("wocas")} />
     </div>
   );
 }

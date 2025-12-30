@@ -4,6 +4,7 @@ import TechReportForm from "./TechReportForm";
 import NonTechReportForm from "./NonTechReportForm";
 import Button from "./Button";
 import GeneratedNotes from "./GeneratedNotes";
+import { formatDateTime } from "./formatDateTime";
 
 function NotesGenerator() {
   const [reportType, setReportType] = useState("");
@@ -17,19 +18,48 @@ function NotesGenerator() {
     setShowNotes(false);
   };
 
+  const formatValue = (val) => (val && val.trim() !== "" ? val : "N/A");
+  const toSentenceCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+
+  const formatNotes = (data, type) => {
+    if (type === "tech") {
+      return `Report Type: ${toSentenceCase(type)}
+Details Of Concern: ${formatValue(data.detailsOfConcern)}
+Name Of Caller: ${formatValue(data.nameOfCaller)}
+Name Of SOR: ${formatValue(data.nameOfSOR)}
+Calling Number: ${formatValue(data.callingNumber)}
+Concerned Number: ${formatValue(data.concernedNumber)}
+Action Done: ${formatValue(data.actionDone)}
+Wocas: ${formatValue(data.wocas)}
+CA: ${formatValue(data.ca)}
+Date And Time Of Experience: ${formatDateTime(data.dateTime)}
+Problem Location: ${formatValue(data.problemLocation)}
+Technology / Signal Bars: ${formatValue(data.technology)}
+Account Status: ${formatValue(data.accountStatus)}
+Sufficient Allocation: ${formatValue(data.sufficientAllocation)}
+Existing Case: ${formatValue(data.existingCase)}
+Part Of Downtime: ${formatValue(data.partOfDowntime)}
+For Escalation: ${formatValue(data.forEscalation)}`;
+    } else if (type === "nontech") {
+      return `Report Type: ${toSentenceCase(type)}
+Details Of Concern: ${formatValue(data.detailsOfConcern)}
+Concerned MIN: ${formatValue(data.concernedMIN)}
+ANI: ${formatValue(data.ani)}
+SOR: ${formatValue(data.sor)}
+Caller Name: ${formatValue(data.callerName)}
+Action Done: ${formatValue(data.actionDone)}
+Wocas: ${formatValue(data.wocas)}`;
+    }
+  }
+
   const handleGenerate = () => {
-    const notes = formatNotes(formData, reportType);
-    setGeneratedNotes(notes);
+    setGeneratedNotes(formatNotes(formData, reportType));
     setShowNotes(true);
   }
 
   const handleCopyNotes = () => {
     navigator.clipboard.writeText(generatedNotes);
     alert("Notes copied to clipboard");
-  }
-
-  const formatNotes = (data, type) => {
-    return `Report Type: ${type}\n...`;
   }
 
   return (
@@ -42,13 +72,13 @@ function NotesGenerator() {
       <div className="form-container">
         {reportType === "tech" && (
           <TechReportForm
-            formData={reportType}
+            formData={formData}
             setFormData={setFormData}
           />
         )}
         {reportType === "nontech" && (
           <NonTechReportForm
-            formData={reportType}
+            formData={formData}
             setFormData={setFormData}
           />
         )}

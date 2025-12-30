@@ -1,4 +1,4 @@
-function RadioGroup({ label, name, options }) {
+function RadioGroup({ label, name, options, value, onChange }) {
   return (
     <div className="radio-group">
       <p>{label}:</p>
@@ -8,6 +8,8 @@ function RadioGroup({ label, name, options }) {
             type="radio"
             name={name}
             value={option}
+            checked={value === option}
+            onChange={() => onChange(option)}
           />
           {option}
         </label>
