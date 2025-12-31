@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-function GeneratedNotes({ notes, onCopy }) {
+function GeneratedNotes({ notes, onCopy, copyMessage }) {
   return (
     <div className="generated-notes">
       <h3>Generated Notes</h3>
@@ -10,6 +10,11 @@ function GeneratedNotes({ notes, onCopy }) {
       <Button onClick={onCopy} variant="secondary" fullWidth>
         Copy Notes
       </Button>
+      {copyMessage && (
+        <div className="copy-message">
+          {copyMessage}
+        </div>
+      )}
     </div>
   );
 }

@@ -11,6 +11,7 @@ function NotesGenerator() {
   const [formData, setFormData] = useState({});
   const [generatedNotes, setGeneratedNotes] = useState("");
   const [showNotes, setShowNotes] = useState(false);
+  const [copyMessage, setCopyMessage] = useState("")
 
   const handleClearAll = () => {
     setFormData({});
@@ -59,7 +60,8 @@ Wocas: ${formatValue(data.wocas)}`;
 
   const handleCopyNotes = () => {
     navigator.clipboard.writeText(generatedNotes);
-    alert("Notes copied to clipboard");
+    setCopyMessage("Notes copied to clipboard!");
+    setTimeout(() => setCopyMessage(""), 2000);
   }
 
   return (
@@ -102,6 +104,7 @@ Wocas: ${formatValue(data.wocas)}`;
           <GeneratedNotes
             notes={generatedNotes}
             onCopy={handleCopyNotes}
+            copyMessage={copyMessage}
           />
         )}
       </div>

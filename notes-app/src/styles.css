@@ -329,6 +329,8 @@ body {
   background: #E0ECFF;
   border-radius: 12px;
   border: 2px solid #CADEFC;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .generated-notes h3 {
@@ -347,6 +349,9 @@ body {
   margin-bottom: 16px;
   max-height: 300px;
   overflow-y: auto;
+  overflow-x: hidden;
+  word-break: break-all;
+  max-width: 100%;
 }
 
 .notes-output pre {
@@ -357,6 +362,7 @@ body {
   word-wrap: break-word;
   margin: 0;
   line-height: 1.6;
+  overflow-wrap: break-word;
 }
 
 .notes-output::-webkit-scrollbar {
@@ -371,6 +377,29 @@ body {
 .notes-output::-webkit-scrollbar-thumb {
   background: #B6CFF7;
   border-radius: 3px;
+}
+
+.copy-message {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: #B6CFF7;
+  color: #1a1a1a;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Animation */
