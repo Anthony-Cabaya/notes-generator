@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ReportTypeSelector from "./ReportTypeSelector";
 import TechReportForm from "./TechReportForm";
 import NonTechReportForm from "./NonTechReportForm";
@@ -11,12 +11,18 @@ function NotesGenerator() {
   const [formData, setFormData] = useState({});
   const [generatedNotes, setGeneratedNotes] = useState("");
   const [showNotes, setShowNotes] = useState(false);
-  const [copyMessage, setCopyMessage] = useState("")
+  const [copyMessage, setCopyMessage] = useState("");
+  const formContainerRef = useRef(null);
 
   const handleClearAll = () => {
     setFormData({});
     setGeneratedNotes("");
     setShowNotes(false);
+
+    if (formContainerRef.current) {
+      formContainerRef.current.scrollTop = 0;
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const formatValue = (val) => (val && val.trim() !== "" ? val : "N/A");
