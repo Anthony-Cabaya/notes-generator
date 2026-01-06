@@ -60,9 +60,22 @@ Wocas: ${formatValue(data.wocas)}`;
   }
 
   const handleGenerate = () => {
-    setGeneratedNotes(formatNotes(formData, reportType));
-    setShowNotes(true);
-  }
+    try {
+      const notes = formatNotes(formData, reportType);
+      setGeneratedNotes(notes);
+      setShowNotes(true);
+
+      localStorageService.saveNotes({
+        reportType,
+        formData,
+        generatedNotes: notes,
+      });
+
+      console.log('Notes saved offline successfully!');
+    } catch (error) {
+      console.error('Failed to save notes:', error);
+    }
+  };
 
   const handleCopyNotes = () => {
     navigator.clipboard.writeText(generatedNotes);
